@@ -52,7 +52,7 @@ contract Exchange is ERC20 {
     }
 
     //TODO:
-    function removerLiquidity(uint _amount) public returns (uint, uint) {
+    function removeLiquidity(uint _amount) public returns (uint, uint) {
         require(_amount > 0, "Amount should be greater than zero");
         uint ethReserve = address(this).balance;
         uint _totalSupply = totalSupply();
@@ -109,3 +109,20 @@ contract Exchange is ERC20 {
         payable(msg.sender).transfer(ethBought);
     }
 }
+
+/* 
+        If the reserve is empty, intake any user supplied value for
+        `Ether` and `Crypto Dev` tokens because there is no ratio currently
+    */
+
+/**
+ *// Why LP is proportional to ETH not to CryptoDevs token?
+ * If you see carefully cryptodevs token gonna have less worth than ETH(for ex. it may be like 25 cryptodev token = 1ETH),
+ * so considering that if you make the LP token proportional to it, at the end you will eventually have to pay more fees
+ * to the liquidity providers.
+ */
+
+/**
+ */ //Todo: Remove Liquidity:
+ * The function takes an input parameter _amount, which represents the number of LP tokens that the liquidity provider wants to remove from the pool.
+ */
